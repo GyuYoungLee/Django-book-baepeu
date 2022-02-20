@@ -13,19 +13,14 @@ def index(request):
 class IndexView(generic.ListView):
     # model = Question
     def get_queryset(self):
-        return Question.objects.order_by('-pub_date')[:5]
+        return Question.objects.order_by('pub_date')[:1]
 
-    template_name = 'polls/index.html'  # default: polls/question_list.html
-    context_object_name = 'latest_question_list'  # default: object_list
+    template_name = 'polls/index.html'
+    context_object_name = 'latest_question_list'
 
 
 def detail(request, question_id):
-    # try:
-    #     question = Question.objects.get(pk=question_id)
-    # except Question.DoesNotExist:
-    #     raise Http404('Question does not exist')
     question = get_object_or_404(Question, pk=question_id)
-
     return render(request, 'polls/detail.html', {'question': question})
 
 
@@ -34,7 +29,6 @@ class DetailView(generic.DetailView):
     template_name = 'polls/detail.html'
 
 
-# api
 def vote(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
     try:
@@ -42,7 +36,7 @@ def vote(request, question_id):
     except (KeyError, Choice.DoesNotExist):
         return render(request, 'polls/detail.html', {
             'question': question,
-            'error_message': "you didn't select a choice"
+            'error_message': 'you didnt select a choice'
         })
     else:
         selected_choice.votes += 1
