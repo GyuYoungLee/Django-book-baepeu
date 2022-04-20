@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %}Detail{% endblock %}
+
+{% block content %}
+    {{ bookmark.site_name }} <br>
+    {{ bookmark.url }} <br>
+
+    <div class="btn-group">
+        <a href="{% url 'bookmark:list' %}" class="btn btn-info">List</a>
+    </div>
+{% endblock %}

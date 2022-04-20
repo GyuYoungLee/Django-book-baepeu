@@ -1,9 +1,9 @@
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-SECRET_KEY = 'django-insecure-1_f-up%1(tb^vm6g%(v4(njb6m$s3%h3%2acz^ba2e2fr57xl8'
-DEBUG = True
-ALLOWED_HOSTS = []
+SECRET_KEY = 'django-insecure-@h*k%p6z%z$vr0ip_i4-vrio)v1g-*^go6$29(l5hz$-9t3!eo'
+DEBUG = False
+ALLOWED_HOSTS = ["*"]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -12,8 +12,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework',
-    'snippets'
+    'bookmark.apps.BookmarkConfig'
 ]
 
 MIDDLEWARE = [
@@ -31,7 +30,7 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / "templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -72,5 +71,7 @@ LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
-STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+STATIC_URL = 'static/'
+STATICFILES_DIRS = [BASE_DIR / 'static']
